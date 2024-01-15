@@ -5,6 +5,7 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:  # This allows the workflow to be manually triggered  
 
 jobs:
   test-val-pipeline-buckbeats:
