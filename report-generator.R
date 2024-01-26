@@ -85,17 +85,11 @@ if (report_output_prefix == "") {
     pkg_name, "-", pkg_version, "-validation-report"
   )
 }
-# Write the JSON object to a file
-write(json_object, file = report_output_prefix)
 
-# allow rmarkdown to choose appropriate file extension for output format
-report_file_path <- rmarkdown::render(
-  template_path,
-  output_dir = getwd(),  # create report wherever R script was called
-  output_file = report_output_prefix,
-  output_format = report_format,
-  params = list(pkg_dir = pkg_dir)
-)
+report_file_path <- paste0(report_output_prefix,".json")
+
+# Write the JSON object to a file
+write(json_object, file = report_file_path)
 
 # Create a tmp file which contains the final report filename
 writeLines(report_file_path, "/tmp/report_file_path.txt")
